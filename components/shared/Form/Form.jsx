@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { redirect } from 'next/navigation'
 import { useDispatch } from "react-redux";
 import { setLoggedIn } from "@/features/users/useSlice";
+import { useState } from "react";
 
 const InputField = ({ label, id, type, register, required }) => (
   <div>
@@ -33,6 +34,7 @@ const Form = (props) => {
   const { login = false, feedback = false, order = false } = props;
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const dispatch = useDispatch();
+  const [topic, setTopic] = useState('');
 
 
   const onSubmit =  (data) => {
@@ -118,69 +120,87 @@ const Form = (props) => {
 
              {feedback && (
               <>
-                {/* Email section */}
-                <InputField label="Email address" id="email" type="email" register={register} required />
-                {/* Select Problem section */}
-                <div>
-                  <label
-                    htmlFor="topic"
-                    className="block text-xl font-bold leading-6 text-gray-900"
-                  >
-                    Select Contact Topic
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      type="radio"
-                      name="topic"
-                      id="topic"
-                      checked
-                      className="mx-2"
-                    />
-                    About Kiti
-                    <input
-                      type="radio"
-                      name="topic"
-                      id="topic"
-                      className="mx-2"
-                    />
-                    About Food
-                    <input
-                      type="radio"
-                      name="topic"
-                      id="topic"
-                      className="mx-2"
-                    />
-                    About Discount
-                    <input
-                      type="radio"
-                      name="topic"
-                      id="topic"
-                      className="mx-2"
-                    />
-                    About Restaurant
-                  </div>
-                </div>
-                {/* Comment section */}
-                <div>
-                  <label
-                    htmlFor="comment"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    Your Problem
-                  </label>
-                  <div className="mt-2">
-                    <textarea
-                      id="comment"
-                      name="comment"
-                      type="text"
-                      rows={4}
-                      autoComplete="comment"
-                      required
-                      {...register("comment", { required: true })}
-                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                  </div>
-                </div>
+  
+<div>
+  {/* Email section */}
+  <InputField label="Email address" id="email" type="email" register={register} required />
+  {/* Select Problem section */}
+  <div className="flex flex-col sm:flex-row">
+    <label
+      htmlFor="topic"
+      className="block text-sm sm:text-xl font-bold leading-6 text-gray-900"
+    >
+      Select Contact Topic
+    </label>
+    <div className="mt-2 sm:mt-0 sm:ml-4">
+      <label>
+        <input
+          type="radio"
+          name="topic"
+          id="topic1"
+          checked={topic === 'About Kiti'}
+          onChange={() => setTopic('About Kiti')}
+          className="mx-2"
+        />
+        About Kiti
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="topic"
+          id="topic2"
+          checked={topic === 'About Food'}
+          onChange={() => setTopic('About Food')}
+          className="mx-2"
+        />
+        About Food
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="topic"
+          id="topic3"
+          checked={topic === 'About Discount'}
+          onChange={() => setTopic('About Discount')}
+          className="mx-2"
+        />
+        About Discount
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="topic"
+          id="topic4"
+          checked={topic === 'About Restaurant'}
+          onChange={() => setTopic('About Restaurant')}
+          className="mx-2"
+        />
+        About Restaurant
+      </label>
+    </div>
+  </div>
+  {/* Comment section */}
+  <div className="mt-4">
+    <label
+      htmlFor="comment"
+      className="block text-sm sm:text-xl font-medium leading-6 text-gray-900"
+    >
+      Your Problem
+    </label>
+    <div className="mt-2">
+      <textarea
+        id="comment"
+        name="comment"
+        type="text"
+        rows={4}
+        autoComplete="comment"
+        required
+        {...register("comment", { required: true })}
+        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+      />
+    </div>
+  </div>
+</div>
               </>
             )} 
 

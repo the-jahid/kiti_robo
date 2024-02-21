@@ -5,21 +5,20 @@ import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-
 const ConfirmOrder = ( {item}) => {
         const {id, name, description, price, photo: image } = item;
         const [quantity, setQuantity] = useState(1)
 
     
 const ConfirmOrder = async (id, quantity) => {
-    const token = localStorage.getItem('jwtToken'); // get jwt token from local storage
+    const token = localStorage.getItem('jwtToken'); 
   
     try {
       const response = await axios.post('http://203.190.8.197/food/submit_order', 
-        { food_id:String(id), quantity:String(quantity) }, // send the id and quantity in the body
+        { food_id:String(id), quantity:String(quantity) }, 
         {
           headers: {
-            'Authorization': `Bearer ${token}` // send the jwt token in the header
+            'Authorization': `Bearer ${token}` 
           }
         }
       );

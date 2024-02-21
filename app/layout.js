@@ -4,6 +4,7 @@ import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import { ReduxProvider } from "./store";
 import { Toaster } from "react-hot-toast";
+import { getUserProfile } from "@/utils/object-utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,6 +14,13 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
+  const user = getUserProfile();
+
+  if(user !== null ) {
+    window.location.reload();
+  }
+
   return (
     <ReduxProvider>
     <html lang="en">

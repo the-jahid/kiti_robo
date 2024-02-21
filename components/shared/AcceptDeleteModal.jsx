@@ -16,3 +16,4 @@ const AcceptDeleteModal = ({ id, title, buttonText, buttonColor, onConfirm }) =>
 );
 
 export default AcceptDeleteModal;
+
