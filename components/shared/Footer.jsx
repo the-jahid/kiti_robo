@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react'
+import React from 'react';
 import { Button } from '../ui/button';
 
 const Footer = () => {
@@ -46,7 +46,7 @@ const Footer = () => {
 
                     <div className='space-y-2' >
                         <p>Give Feedback</p>
-                        <div className='flex space-x-2 ' >
+                        <div className='flex space-x-2 flex-wrap space-y-4 ' >
                             <input type="text" name="feedback" placeholder='Type Here' className='border p-2' />
                             <Button>Submit</Button>
                         </div>

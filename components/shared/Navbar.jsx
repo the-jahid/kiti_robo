@@ -19,7 +19,7 @@ const Navbar = () => {
 
     // Return the Navbar component
     return (
-        <nav className="flex justify-between backdrop-blur-md items-center md:px-10 sticky top-0 drop-shadow-md z-10 ">
+        <nav className="flex justify-between backdrop-blur-md items-center md:px-10 sticky top-0 drop-shadow-md z-10 w-full ">
             <Image src={'/assets/Kiti-Logo.png'} width={200} height={200} alt="logo" />
 
             <div className="hidden md:block text-lg font-normal">

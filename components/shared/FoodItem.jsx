@@ -4,6 +4,7 @@ import { BsFillCartCheckFill } from "react-icons/bs";
 import { MdFavorite } from "react-icons/md";
 
 import ConfirmOrder from "./ConfirmOrder";
+import Image from "next/image";
 
 const FoodItem = ({ item }) => {
   
@@ -12,9 +13,11 @@ const FoodItem = ({ item }) => {
 
   return (
     <div>
-      <div className="card w-96 bg-base-100 shadow-xl image-full ">
-        <figure>
-          <img src={image} alt={name} className="hover:scale-105 " />
+      <div className="card  w-full bg-base-100 shadow-xl image-full ">
+
+
+        <figure className="w-full h-60" >
+          <Image src={image} alt={name} className="rounded-md" layout="fill" objectFit="cover"  />
         </figure>
         <div className="card-body justify-end p-5">
           <div className="">
