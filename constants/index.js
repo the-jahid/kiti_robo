@@ -359,3 +359,177 @@ export const robotsList = [
         live:true,
     },
 ]
+
+export const teamInfo = [
+    {
+        id:1, 
+        name:'Md. Hafizul Imran',
+        imageLink:'https://i.ibb.co/Rz6PL7C/Md-Hafizul-Imran.png',
+        designation:'Research Assistant',
+        contribution:'Team leading, Project Design, R&D',
+        contributionLabel:'Strong'
+    },
+    {
+        id:2, 
+        name:'Md. Jahid Hossain',
+        imageLink:'https://i.ibb.co/Rz6PL7C/Md-Hafizul-Imran.png',
+        designation:'Research Assistant',
+        contribution:'Robot software development',
+        contributionLabel:'Strong'
+    },
+    {
+        id:3, 
+        name:'Ronok Raihan',
+        imageLink:'https://i.ibb.co/Rz6PL7C/Md-Hafizul-Imran.png',
+        designation:'Research Assistant',
+        contribution:'Robot 3D Designing',
+        contributionLabel:'Strong'
+    },
+    {
+        id:4, 
+        name:'Shovon Parvej',
+        imageLink:'https://i.ibb.co/Rz6PL7C/Md-Hafizul-Imran.png',
+        designation:'Research Assistant ',
+        contribution:'Design robot hardware & wiring',
+        contributionLabel:'Strong'
+    },
+    {
+        id:5, 
+        name:'Md. SifatUllah',
+        imageLink:'https://i.ibb.co/Rz6PL7C/Md-Hafizul-Imran.png',
+        designation:'Research Assistant',
+        contribution:'Robot Software Development',
+        contributionLabel:'Low'
+    },
+    {
+        id:6, 
+        name:'Deabashis Sarker Tamal',
+        imageLink:'https://i.ibb.co/fQvtDdG/Debashis-Sarker-Tamal.png',
+        designation:'Student Research Assistant',
+        contribution:'Software Integration, Web Interface',
+        contributionLabel:'Strong'
+    },
+    {
+        id:7, 
+        name:'Md Jahidul Islam',
+        imageLink:'https://i.ibb.co/2jTRHJ0/Md-Jahidul-Islam.png',
+        designation:'Student Research Assistant',
+        contribution:'Web Frontend Development',
+        contributionLabel:'Strong'
+    },
+    {
+        id:8, 
+        name:'Md Tarek Billah',
+        imageLink:'https://i.ibb.co/B4kSjpc/Md-Tarek-Billah.png',
+        designation:'Student Research Assistant',
+        contribution:'Robot  Assembly',
+        contributionLabel:'Strong'
+    },
+    {
+        id:9, 
+        name:'Simanta Kumar Roy',
+        imageLink:'https://i.ibb.co/B4kSjpc/Md-Tarek-Billah.png',
+        designation:'Student Research Assistant',
+        contribution:'Web Backend Development',
+        contributionLabel:'Strong'
+    },
+    {
+        id:10, 
+        name:'MD. Rahat Roctim',
+        imageLink:'https://i.ibb.co/7rzYSGB/MD-Rahat-Roctim.png',
+        designation:'Student Research Assistant',
+        contribution:'UI & UX Development',
+        contributionLabel:'Strong'
+    },
+    {
+        id:11, 
+        name:'Md Jabed Hosen',
+        imageLink:'https://i.ibb.co/rZ6kY9n/Md-Jabed-Hosen.png',
+        designation:'Student Research Assistant',
+        contribution:'Testing & Data Collection',
+        contributionLabel:'Medium'
+    },
+    {
+        id:12, 
+        name:'Nur Hossain Farid ',
+        imageLink:'https://i.ibb.co/2WShZFJ/Nur-Hossain-Farid.png',
+        designation:'Student Research Assistant',
+        contribution:'Web Frontend Development',
+        contributionLabel:'Medium'
+    },
+    {
+        id:13, 
+        name:'Sabbir bin shazid',
+        imageLink:'https://i.ibb.co/y6NdgbG/Sabbir-bin-shazid.png',
+        designation:'Student Research Assistant',
+        contribution:'Testing & Data Collection',
+        contributionLabel:'Medium'
+    },
+    {
+        id:14, 
+        name:'Rakesh Karmaker',
+        imageLink:'https://i.ibb.co/5jWBNVs/Rakesh-Karmaker.png',
+        designation:'Student Research Assistant',
+        contribution:'Robot Wiring',
+        contributionLabel:'Low'
+    },
+    {
+        id:15, 
+        name:'Imtiaj Sultan Manna',
+        imageLink:'https://i.ibb.co/qjQGshL/Imtiaj-Sultan-Manna.png',
+        designation:'Student Research Assistant',
+        contribution:'Api Integration',
+        contributionLabel:'Low'
+    },
+    {
+        id:16, 
+        name:'Anik Sarker',
+        imageLink:'https://i.ibb.co/q52bNQm/Anik-Sarker.png',
+        designation:'Student Research Assistant',
+        contribution:'Robot Wiring',
+        contributionLabel:'Low'
+    }
+]
+
+export const advisorInfo = [
+    {
+        id:1,
+        name:'Prof. Dr. Syed Akhter Hossain',
+        imageLInk:'https://i.ibb.co/gTRd3Mf/699993c6db60de73aecbf238d5953462.jpg'
+    },
+    {
+        id:2,
+        name:'Dr. Sheak Rashed Haider Noori',
+        imageLInk:'https://i.ibb.co/PgM8wdm/d5d06cf0a79a30f4a8a0eebfe152f1ef.jpg'
+    },
+    {
+        id:3,
+        name:'Professor Dr. Touhid Bhuiyan',
+        imageLInk:'https://i.ibb.co/RNNTvpJ/4383d374442e6e72ad12a0bb79c36aab.jpg'
+    },
+    {
+        id:4,
+        name:'Dr. Imran Mahmud',
+        imageLInk:'https://i.ibb.co/jWwH4Kv/e7d9a85a7be93c10b4c2de4fb9da9dbc.jpg'
+    },
+
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
