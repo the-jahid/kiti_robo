@@ -35,6 +35,57 @@ const Rms = () => {
 
     const onSubmit = (data) => console.log(data)
 
+    const socket = io("http://203.190.8.197:5000");
+
+    socket.on("connect", () => {
+      console.log("Connected to server");
+  
+      socket.on("message", (message) => {
+        console.log("Message received: ", message);
+      });
+  
+      socket.on("disconnect", () => {
+        console.log("Disconnected from server");
+      });
+    });
+  
+    useEffect(() => {
+      // set time interval to get the location
+      const interval = setInterval(() => {
+        // get the location from the api
+        axios
+          .get("http://dsttamal.me/read_GPS.php")
+          .then((response) => {
+            // handle the response here
+            const location = response.data;
+            const position = { lat: location.latitude, lng: location.longitude };
+            dispatch(setLocation(position));
+          })
+          .catch((error) => {
+            // handle the error here
+            console.error(error);
+          });
+      }, 1000);
+  
+      return () => clearInterval(interval);
+    }, []);
+  
+    const setToServer = () => {
+      axios
+        .post("http://dsttamal.me/set_GPS.php", {
+          positions: positions,
+        })
+        .then((response) => {
+          console.log(response.data);
+          socket.send("get");
+          alert("Route Sent");
+        })
+        .catch((error) => {
+          alert("Route not Sent");
+          console.log(error);
+        });
+    };
+  
     return (
         <div className="flex justify-between h-full ">
 
@@ -145,38 +196,51 @@ const Rms = () => {
 
                         </div>
                         <div className="bg-cyan-400 " >
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29183.554488498266!2d90.31956364999999!3d23.89159335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8ada2664e21%3A0x3c872fd17bc11ddb!2sDaffodil%20International%20University!5e0!3m2!1sen!2sbd!4v1706485148845!5m2!1sen!2sbd"
-                                className="w-full h-[240px]"
-                                allowFullScreen=""
-                                loading="lazy"
-                                referrerPolicy="no-referrer-when-downgrade">
-                            </iframe>
+                            <MapPath />
                         </div>
                     </div>
 
                     {/* bottom section end */}
                     <div className="basis-4/12 bg-white shadow-lg px-5 space-y-4 py-4 rounded-md " >
-
-                        <div className="flex flex-col items-center justify-center bg-white shadow-lg p-2 " >
-                            <p className="text-xl font-semibold text-primary " >Enter Details</p>
-                            <hr />
-                            <form className="flex flex-col space-y-2" onSubmit={handleSubmit(onSubmit)}>
-                                {formFields.map((field) => (
-                                    <div className="flex flex-col" key={field.id}>
-                                        <label htmlFor={field.id} className="font-semibold">{field.label}</label>
-                                        <Input type='text' {...register(field.id, { required: true })} />
+                        <h1 className="text-center h1">Selected points</h1>
+                        <div className="flex items-center justify-center">
+                            {positions.map((position, index) => {
+                                return (
+                                    <div
+                                        className="w-8 h-8 bg-red-500 text-white mr-[10px] text-center cursor-pointer rounded-full"
+                                        key={position.id}
+                                    >
+                                        {index < 9 ? `0${index + 1}` : index + 1}
                                     </div>
-                                ))}
-                                <Button type='submit'>Confirm Destination</Button>
-                            </form>
+                                );
+                            })}
                         </div>
-                        <div className=" flex flex-row md:flex-col justify-between space-x-5 md:space-x-0 md:space-y-4 " >
-                            <button className="p-4 md:py-6 flex-1 bg-primary rounded " >
-                                <h2 className="text-xl text-white " >Kiti Run</h2>
+                        <div className="flex flex-col items-center justify-center bg-white shadow-lg p-2">
+                            <hr />
+                        </div>
+                        <div className=" flex flex-row md:flex-col justify-between space-x-5 md:space-x-0 md:space-y-4">
+                            <button
+                                onClick={() => {
+                                    dispatch(setRoute({ route: true }));
+                                    socket.send("stop");
+                                    setToServer();
+                                }}
+                                className="p-4 md:py-6 flex-1 bg-primary rounded " >
+                                <h2 className="text-xl text-white " >Sent Route</h2>
                             </button>
-                            <button className="p-4 md:py-6 flex-1 bg-red-500 rounded " >
-                                <h2 className="text-xl text-white " >Kiti Stop</h2>
+                            <button
+                                onClick={() => {
+                                    socket.send("go");
+                                }}
+                                className="p-4 md:py-6 flex-1 bg-primary rounded " >
+                                <h2 className="text-xl text-white " >Kiti GO</h2>
+                            </button>
+                            <button
+                                onClick={() => {
+                                    socket.send("stop");
+                                }}
+                                className="p-4 md:py-6 flex-1 bg-red-500 rounded " >
+                                <h2 className="text-xl text-white  " >Kiti Stop</h2>
                             </button>
                         </div>
                     </div>

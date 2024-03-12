@@ -2,7 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
-import { ReduxProvider } from "./store";
+import { ReduxProvider } from "./ReduxProvider";
 import { Toaster } from "react-hot-toast";
 import { getUserProfile } from "@/utils/object-utils";
 
