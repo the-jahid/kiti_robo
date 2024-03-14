@@ -12,6 +12,7 @@ import { GiRobotAntennas } from "react-icons/gi";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
 import { useSelector } from "react-redux";
+import MapPath from "../map/MapPath";
 
 const Rms = () => {
 
