@@ -11,13 +11,21 @@ import { FaCartArrowDown, FaRegMessage } from "react-icons/fa6";
 import { GiRobotAntennas } from "react-icons/gi";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
-import { useSelector } from "react-redux";
 // import MapPath from "../map/MapPath";
 import MapPath from "@/components/map/MapPath";
+import { io } from "socket.io-client";
+import { useDispatch, useSelector } from "react-redux"
+// import io from "socket.io-client";
+import { useEffect } from "react";
+import axios from "axios";
+import { setLocation } from "@/features/robots/currentPosition";
+import { setRoute } from "@/features/robots/makeRoute";
+
 
 const Rms = () => {
-
-    const singleRobot = useSelector((state) => state.robots.singlerobot)
+    const dispatch = useDispatch();
+    const positions = useSelector((state) => state.positions.positions);
+    const singleRobot = useSelector((state) => state.robots.singlerobot);
 
     // const { lists, singlerobot } = robots;
 
