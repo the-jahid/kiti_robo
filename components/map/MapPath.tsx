@@ -16,8 +16,8 @@ import { setRoute } from "@/features/robots//makeRoute";
 
 export default function MapPath() {
   const dispatch = useDispatch();
-  const [position, setPosition] = useState();
-  const [clickPosition, setClickPosition] = useState();
+  const [position, setPosition] = useState({ lat: 0, lng: 0 });
+  const [clickPosition, setClickPosition] = useState({ lat: 0, lng: 0 });
   const [makeNewPositions, setMakeNewPositions] = useState([]);
   const lat = useSelector((state: RootState) => state.currentPositionSlice.lat);
   const lng = useSelector((state: RootState) => state.currentPositionSlice.lng);
