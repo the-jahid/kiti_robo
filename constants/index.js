@@ -372,7 +372,7 @@ export const teamInfo = [
     {
         id:2, 
         name:'Md. Jahid Hossain',
-        imageLink:'https://i.ibb.co/Rz6PL7C/Md-Hafizul-Imran.png',
+        imageLink:'https://i.ibb.co/gTZwzmm/Name.png',
         designation:'Research Assistant',
         contribution:'Robot software development',
         contributionLabel:'Strong'
