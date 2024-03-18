@@ -12,7 +12,7 @@ const HeroSection = () => {
           </div>
           <div className='max-w-2xl' >
             <h1 className="text-5xl font-bold"><span className='text-deep_blue'>Your Favorite</span> <span className='text-secondary' >Food</span> <span className='text-primary' >Delivery Assistant</span></h1>
-            <p className="py-6">Introducing Kiti, the smart food delivery assistant in town. Kiti is a state-of-the-art robot that seamlessly connects restaurants with customers. With its cutting-edge technology, Kiti can efficiently receive orders from local eateries and navigate through bustling streets to deliver fresh and hot meals directly to your doorstep.</p>
+            <p className="py-6">Introducing KITI Autonomous Delivery Robot! We are changing the game in urban delivery, making it easier and more convenient than ever. Our robot uses super smart technology to zip through busy streets all by itself, bringing your packages right to your door. With KITI, you get fast, secure delivery without any hassle. Plus, we are all about saving money and the planet by cutting down on delivery costs and emissions. Say hello to the future of delivery with KITI — where smart ideas and innovation come together to make your life easier.</p>
            <Button className='bg-primary' >Order Now</Button>
           </div>
         </div>

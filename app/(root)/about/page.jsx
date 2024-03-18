@@ -52,13 +52,7 @@ const AboutPage = () => {
             Robotics Lab
           </h1>
           <p className="text-xs sm:text-sm md:text-xl text-justify">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi
-            natus autem aspernatur vitae incidunt minus magni esse optio velit!
-            Quia rem ullam officia veritatis, praesentium molestiae iste tenetur
-            sint asperiores. Lorem ipsum dolor sit amet, consectetur adipisicing
-            elit. Eligendi natus autem aspernatur vitae incidunt minus magni
-            esse optio velit! Quia rem ullam officia veritatis, praesentium
-            molestiae iste tenetur sint asperiores. Lorem ipsum dolor sit amet.
+          The Daffodil Robotics Lab, located within Daffodil International University Faculty of FSIT in DSC, is dedicated to advancing robotics and artificial intelligence. We are dedicated to making industries more efficient through our research in autonomous robotics, robotic systems, and human-machine interaction. Collaborating with industry and academia, we develop practical applications like the KITI Autonomous Delivery Robot and explore drone technology, shaping the future of robotics. Our commitment to improving efficiency and precision in all domains is reflected in the recognition our students, faculty, and alumni receive as leaders in the field. In addition to our research initiatives, we actively engage with the robotics community through the organization of robotics competitions and workshops. These events provide platforms for students, faculty, and industry professionals to showcase their innovations, exchange ideas, and foster collaboration in the field of robotics.
           </p>
           <div className="mt-5 sm:mt-10 flex gap-5 md:gap-10">
             <Button
