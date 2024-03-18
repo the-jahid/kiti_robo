@@ -380,7 +380,7 @@ export const teamInfo = [
     {
         id:3, 
         name:'Ronok Raihan',
-        imageLink:'https://i.ibb.co/Rz6PL7C/Md-Hafizul-Imran.png',
+        imageLink:'https://i.ibb.co/R0dJ6dh/S-M-Rownak-Rayhan-3-D-Designing-and-Manufacturing.png',
         designation:'Research Assistant',
         contribution:'Robot 3D Designing',
         contributionLabel:'Strong'
@@ -388,7 +388,7 @@ export const teamInfo = [
     {
         id:4, 
         name:'Shovon Parvej',
-        imageLink:'https://i.ibb.co/Rz6PL7C/Md-Hafizul-Imran.png',
+        imageLink:'https://i.ibb.co/C8KVNxh/Shovan-Parvez-1.png',
         designation:'Research Assistant ',
         contribution:'Design robot hardware & wiring',
         contributionLabel:'Strong'
