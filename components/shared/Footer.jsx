@@ -7,8 +7,11 @@ const Footer = () => {
     return (
         <footer className='bg-[#D9D9D9] p-5 px-10 ' >
             <div className='flex justify-between flex-col md:flex-row space-y-5  ' >
-                <div className=' mx-auto   md:mx-0 ' >
-                    <Image src={'/assets/Kiti-Logo.png'} width={200} height={200} alt='footer_logo' />
+                <div className=' mx-auto   md:mx-0 space-y-2 ' >
+                    <p className='text-primary text-lg font-semibold' >Developed By</p>
+                    <Image src={'/assets/Robotics_Lab_logo.png'} width={200} height={200} alt='footer_logo' />
+                    <Image src={'/assets/diu_logo.png'} width={200} height={200} alt='footer_logo' />
+                    
                 </div>
                 <div>
                     <h2 className="font-bold text-deep_blue ">Service</h2>

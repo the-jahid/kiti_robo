@@ -133,7 +133,7 @@ const AboutPage = () => {
       </section>
       <section className="flex flex-col gap-16 justify-center items-center">
         <h1 className="text-4xl text-deep_blue font-bold">
-          Other Robots Developed By Us
+          Other Robots From Our Lab
         </h1>
 
         <Image

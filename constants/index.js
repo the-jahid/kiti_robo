@@ -371,8 +371,8 @@ export const teamInfo = [
     },
     {
         id:2, 
-        name:'Md. Jahid Hossain',
-        imageLink:'https://i.ibb.co/gTZwzmm/Name.png',
+        name:'Md. Zahid Hossain',
+        imageLink:'https://i.ibb.co/8DnY0Zn/Md-Zahid-Hasan.png',
         designation:'Research Assistant',
         contribution:'Robot software development',
         contributionLabel:'Strong'
@@ -396,7 +396,7 @@ export const teamInfo = [
     {
         id:5, 
         name:'Md. SifatUllah',
-        imageLink:'https://i.ibb.co/Rz6PL7C/Md-Hafizul-Imran.png',
+        imageLink:'https://i.ibb.co/gTZwzmm/Name.png',
         designation:'Research Assistant',
         contribution:'Robot Software Development',
         contributionLabel:'Low'
