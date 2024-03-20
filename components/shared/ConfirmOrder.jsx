@@ -6,11 +6,18 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const ConfirmOrder = ( {item}) => {
-        const {id, name, description, price, photo: image } = item;
-        const [quantity, setQuantity] = useState(1)
+      const {id, name, description, price, photo: image } = item;
+      const [quantity, setQuantity] = useState(1);
+      const [adress, setAdress] = useState('');
 
     
 const ConfirmOrder = async (id, quantity) => {
+
+
+    if(adress.length == 0){
+      toast.error("Enter Your Address TO Confirm Order")
+      return;
+    }
     const token = localStorage.getItem('jwtToken'); 
   
     try {
@@ -59,6 +66,9 @@ const ConfirmOrder = async (id, quantity) => {
                           <p className="font-bold" >{quantity}</p>
                           <Button className="bg-primary px-10 font-bold" onClick={() => setQuantity(quantity+1)} >+</Button>
                        </div>
+                       
+                          <input onChange={(e) => setAdress(e.target.value)} type="text" className="w-full border p-2 rounded"  placeholder="Enter Your Address" />
+                      
                        <Button className='bg-primary' onClick={() => ConfirmOrder(id, quantity)} >Confirm Order</Button>
                     </div>
                 </div>

@@ -57,7 +57,7 @@ export default function MapPath() {
   }, [click_lat, click_lng]);
 
   return (
-    <div style={{ height: "100vh", width: "100%" }}>
+    <div className="h-96 w-full rounded-md">
       <APIProvider apiKey={""}>
         <Map
           center={{ lat: 23.876985, lng: 90.320455 }}

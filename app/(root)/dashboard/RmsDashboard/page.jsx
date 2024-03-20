@@ -101,129 +101,76 @@ const Rms = () => {
           console.log(error);
         });
     };
+
+    const images = [
+        'https://i.ibb.co/CvCq1rp/43822.jpg',
+        'https://i.ibb.co/GdtXkbC/2151153910.jpg',
+        'https://i.ibb.co/pxjMBR2/3d-rendering-loft-luxury-living-room-with-bookshelf.jpg'
+    ];
   
     return (
         <div className="flex justify-between h-full ">
 
             {/* sidebar */}
-            <div className="basis-3/12 bg-white px-5 space-y-3 hidden md:block my-auto ">
+            <div className="basis-2/12 bg-white px-5 space-y-3 hidden md:block my-auto ">
                 <RmsDashboardSidebar />
 
             </div>
             {/* sidebar ends */}
 
-            <div className=" basis-12/12 md:basis-9/12 bg-blue-50 flex flex-col p-4 space-y-4 w-full " >
+            <div className=" basis-12/12 md:basis-10/12 bg-blue-50 flex flex-col p-4  w-full  space-y-4" >
 
-                {/* top section */}
-                <div className="flex flex-col md:flex-row justify-between w-full md:space-x-4 space-y-3 md:space-y-0 " >
+               
 
-                    <div className="md:hidden mx-auto flex justify-between w-full space-x-4 " >
-                        <Sheet >
-                            <SheetTrigger asChild>
-                                <Button variant="outline" className='font-semibold' >Robots list</Button>
-                            </SheetTrigger>
-                            <SheetContent className="flex flex-col items-center justify-center" >
-                                <RmsDashboardSidebar />
-                            </SheetContent>
-                        </Sheet>
+                <div className="flex flex-col  space-y-4 md:space-y-0 justify-between space-x-4 " >
 
-                        <Button className='flex-1 font-bold space-x-4' variant="outline" >
-                            <GiRobotAntennas size={25} />
-                            {singleRobot.robotName}</Button>
-                    </div>
+                    <div className=" hidden lg:block space-y-3 mb-5 h-[60vh]  p-5" >
+                        
+                        <div className="  flex flex-col md:flex-row space-x-4 space-y-4 md:space-y-0 w-full h-full">
+                            <div className=" flex  flex-col md:basis-8/12 space-y-4 " >
 
-
-                    <div className="flex justify-between space-x-4" >
-
-                        <span className="bg-white flex flex-col md:flex-row space-x-4 items-center rounded-md p-4 md:px-12 shadow-md " >
-                            <AiOutlineDeliveredProcedure size={40} color="blue" />
-                            <div className="font-semibold" >
-                                <p>255</p>
-                                <h2>Total delivered</h2>
-
-                            </div>
-                        </span>
-                        <span className="bg-white flex flex-col md:flex-row space-x-4 items-center rounded-md p-4 md:px-12 shadow-md " >
-                            <FaCartArrowDown size={40} color="blue" />
-                            <div className="font-semibold" >
-                                <p>300</p>
-                                <h2>Total orders</h2>
-
-                            </div>
-                        </span>
-                    </div>
-                    <div className="shadow-md rounded-md w-full flex flex-col-reverse md:flex-row items-center justify-center md:space-x-5 space-y-3 bg-white p-2 " >
-
-                        <div className="flex space-x-8 mt-5 md:mt-0 " >
-                            <div className="bg-blue-200 relative p-3 rounded-md " >
-                                <IoMdNotificationsOutline size={30} color="blue" />
-                                <span className="absolute bg-blue-500 -right-2 -top-2 rounded-full p-1 " >
-                                    <p className="text-white" >35</p>
-                                </span>
-                            </div>
-                            <div className="bg-blue-200 relative p-3 rounded-md " >
-                                <FaRegMessage size={30} color="blue" />
-                                <span className="absolute bg-blue-500 -right-2 -top-2 rounded-full p-1 " >
-                                    <p className="text-white" >35</p>
-                                </span>
-                            </div>
-                            <div className="bg-blue-200 relative p-3 rounded-md " >
-                                <IoSettingsOutline size={30} color="blue" />
-                                <span className="absolute bg-blue-500 -right-2 -top-2 rounded-full p-1 " >
-                                    <p className="text-white" >35</p>
-                                </span>
-                            </div>
-                        </div>
-
-                        <div className="bg-white shadow-lg flex items-center space-x-4 rounded-md p-1 px-4 " >
-                            <h3 className="font-semibold text-lg " >Hafizul Imran</h3>
-                            <div className="avatar">
-                                <div className="w-16 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                    <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                               <div className="relative  lg:grow  " >
+                                    <Image src={'https://i.ibb.co/b7wpjtB/2151176287.jpg'} alt="dummy_image"  className="w-full h-full rounded" layout="fill"  />
+                                    
+                                    
+                               </div>
+                                <div className="flex justify-evenly grow-0 " >
+                                    <Button className='bg-primary px-4 py-2  ' >Front</Button>
+                                    <Button className='bg-primary px-4 py-2' >Back</Button>
+                                    <Button className='bg-primary px-4 py-2' >Left</Button>
+                                    <Button className='bg-primary px-4 py-2' >Right</Button>
                                 </div>
                             </div>
+                        <div className="hidden md:flex justify-between md:flex-col md:basis-4/12 md:space-y-4">
+                            {images.map((src, index) => (
+                                <Image 
+                                    key={index}
+                                    src={src} 
+                                    alt="camera_image" 
+                                    className=" flex w-full h-32" 
+                                    width={100} 
+                                    height={index === 2 ? 50 : 100} 
+                                />
+                            ))}
                         </div>
 
-                    </div>
-                </div>
-                {/* top section end */}
-
-                {/* bottom section */}
-                <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 justify-between space-x-4 " >
-
-                    <div className=" md:basis-8/12 space-y-3 " >
-                        <h2 className="font-semibold" >Camera View</h2>
-                        <div className="flex flex-col md:flex-row space-x-4 space-y-4 md:space-y-0 w-full">
-                            <div className=" md:basis-9/12 space-y-4 " >
-
-                                <Image src={'https://i.ibb.co/b7wpjtB/2151176287.jpg'} alt="dummy_image" width={1000} height={1000} className="w-full h-64 rounded" />
-                                <div className="flex justify-evenly" >
-                                    <Button className='bg-primary' >Front</Button>
-                                    <Button className='bg-primary' >Back</Button>
-                                    <Button className='bg-primary' >Left</Button>
-                                    <Button className='bg-primary' >Right</Button>
-                                </div>
-                            </div>
-                            <div className=" hidden md:flex justify-between md:flex-col md:basis-3/12 md:space-y-4 ">
-                                <Image src={'https://i.ibb.co/CvCq1rp/43822.jpg'} alt="camera_image" className="w-full h-24" width={100} height={100} />
-                                <Image src={'https://i.ibb.co/GdtXkbC/2151153910.jpg'} alt="camera_image" className="w-full h-24" width={100} height={100} />
-                                <Image src={'https://i.ibb.co/pxjMBR2/3d-rendering-loft-luxury-living-room-with-bookshelf.jpg'} alt="camera_image" className="w-full h-24" width={100} height={50} />
-                            </div>
-
                         </div>
-                        <div className="bg-cyan-400 " >
-                            <MapPath />
-                        </div>
+                       
                     </div>
 
                     {/* bottom section end */}
-                    <div className="basis-4/12 bg-white shadow-lg px-5 space-y-4 py-4 rounded-md " >
-                        <h1 className="text-center h1">Selected points</h1>
-                        <div className="flex items-center justify-center">
+                    <div className="  flex flex-col lg:flex-row bg-white p-5 shadow-lg  space-y-4  rounded-md lg:items-center " >
+                        <div className=" basis-full lg:basis-9/12  h-96 " >
+                                <MapPath />
+                        </div>
+                
+                      <div className=" basis-full lg:basis-3/12 p-4" >
+                      <h1 className="text-center h1">Selected points</h1>
+                        <div className="flex items-center justify-center flex-wrap space-x-2 space-y-2 ">
                             {positions.map((position, index) => {
                                 return (
                                     <div
-                                        className="w-8 h-8 bg-red-500 text-white mr-[10px] text-center cursor-pointer rounded-full"
+                                        className="w-8 h-8 bg-red-500  text-white   text-center cursor-pointer rounded-full"
                                         key={position.id}
                                     >
                                         {index < 9 ? `0${index + 1}` : index + 1}
@@ -234,7 +181,7 @@ const Rms = () => {
                         <div className="flex flex-col items-center justify-center bg-white shadow-lg p-2">
                             <hr />
                         </div>
-                        <div className=" flex flex-row md:flex-col justify-between space-x-5 md:space-x-0 md:space-y-4">
+                        <div className=" flex flex-col space-y-4 justify-between   p-2">
                             <button
                                 onClick={() => {
                                     dispatch(setRoute({ route: true }));
@@ -259,6 +206,8 @@ const Rms = () => {
                                 <h2 className="text-xl text-white  " >Kiti Stop</h2>
                             </button>
                         </div>
+                      </div>
+                      
                     </div>
                 </div>
 
