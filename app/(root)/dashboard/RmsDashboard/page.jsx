@@ -46,6 +46,7 @@ const Rms = () => {
     const onSubmit = (data) => console.log(data)
 
     const socket = io("http://203.190.8.197:5000");
+    const socket2 = io("http://203.190.8.197:5001");
 
     socket.on("connect", () => {
       console.log("Connected to server");
@@ -53,32 +54,37 @@ const Rms = () => {
       socket.on("message", (message) => {
         console.log("Message received: ", message);
       });
+      socket2.on("json", (json) => {
+        console.log("Json received: ", json);
+        const position = { lat: json.latitude, json: location.longitude };
+        dispatch(setLocation(position));
+      });
   
       socket.on("disconnect", () => {
         console.log("Disconnected from server");
       });
     });
   
-    useEffect(() => {
-      // set time interval to get the location
-      const interval = setInterval(() => {
-        // get the location from the api
-        axios
-          .get("http://dsttamal.me/read_GPS.php")
-          .then((response) => {
-            // handle the response here
-            const location = response.data;
-            const position = { lat: location.latitude, lng: location.longitude };
-            dispatch(setLocation(position));
-          })
-          .catch((error) => {
-            // handle the error here
-            console.error(error);
-          });
-      }, 1000);
+    // useEffect(() => {
+    //   // set time interval to get the location
+    //   const interval = setInterval(() => {
+    //     // get the location from the api
+    //     axios
+    //       .get("http://dsttamal.me/read_GPS.php")
+    //       .then((response) => {
+    //         // handle the response here
+    //         const location = response.data;
+    //         const position = { lat: location.latitude, lng: location.longitude };
+    //         dispatch(setLocation(position));
+    //       })
+    //       .catch((error) => {
+    //         // handle the error here
+    //         console.error(error);
+    //       });
+    //   }, 1000);
   
-      return () => clearInterval(interval);
-    }, []);
+    //   return () => clearInterval(interval);
+    // }, []);
   
     const setToServer = () => {
       axios
