@@ -33,6 +33,7 @@ const UserDashboard = () => {
         <Tabs defaultValue="all" className="w-100vw min-h-screen ">
             <div className='px-10' >
                
+                
                 <TabsContent className="min-h-screen" value="pending">
                     {userdata && <UserTable data={userdata} filterStatus="pending" />}
                 </TabsContent>

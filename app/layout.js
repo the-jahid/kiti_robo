@@ -3,7 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import { ReduxProvider } from "./ReduxProvider";
-import { Toaster } from "react-hot-toast";
+import  { Toaster } from "react-hot-toast";
 import { getUserProfile } from "@/utils/object-utils";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -16,6 +16,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
 
   const user = getUserProfile();
+
+
 
   if(user !== null ) {
     window.location.reload();
@@ -30,7 +32,15 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         <Footer />
-        <Toaster />
+        <Toaster  toastOptions={{
+    className: '',
+    style: {
+      border: '1px solid #2C9BDB',
+      padding: '16px',
+      color: '#2C9BDB',
+      zIndex:999
+    },
+  }} />
       </body>
     </html>
     </ReduxProvider>
