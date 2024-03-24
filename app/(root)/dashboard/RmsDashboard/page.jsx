@@ -28,7 +28,7 @@ import { MdOutlineShoppingCartCheckout } from "react-icons/md";
 import { cn } from "@/lib/utils";
 import toast from "react-hot-toast";
 
-import VideoPlayer from "./LiveStream";
+
 import { AcceptDeleteOrder } from "@/components/shared/AcceptDeleteOrder";
 
 
@@ -288,7 +288,11 @@ const Rms = () => {
                         <div className="flex flex-col md:flex-row space-x-4 space-y-4 md:space-y-0 w-full">
                             <div className=" md:basis-9/12 space-y-4 " >
                                 <div>
-                                        <VideoPlayer />        
+                                    <video width="100%" height="100%" controls>
+                                    <source src="video.mp4" type="video/mp4" />
+                                    <source src="video.webm" type="video/webm" />
+                                    Your browser does not support the video tag.
+                                    </video>   
                                 </div>
 
                                 <div className="flex justify-evenly" >
