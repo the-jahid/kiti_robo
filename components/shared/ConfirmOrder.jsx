@@ -11,8 +11,9 @@ const ConfirmOrder = ( {item}) => {
       const [adress, setAdress] = useState('');
 
     
-const ConfirmOrder = async (id, quantity) => {
+  const C_Order = async (id, quantity, address) => {
 
+   console.log('Adress', address);
 
     if(adress.length == 0){
       toast.error("Enter Your Address TO Confirm Order")
@@ -22,15 +23,17 @@ const ConfirmOrder = async (id, quantity) => {
   
     try {
       const response = await axios.post('http://203.190.8.197/food/submit_order', 
-        { food_id:String(id), quantity:String(quantity) }, 
+        { food_id:String(id), quantity:String(quantity), address:String(address) }, 
         {
           headers: {
             'Authorization': `Bearer ${token}` 
           }
         }
       );
-        
+      setAdress('');
+      console.log('Response Data', response)
       toast.success(' sucessfully ordered')
+      document.getElementById(`my_modal_${id}`).close(); 
       return response.data;
     } catch (error) {
         toast.error('Please Login to order the food');
@@ -67,9 +70,9 @@ const ConfirmOrder = async (id, quantity) => {
                           <Button className="bg-primary px-10 font-bold" onClick={() => setQuantity(quantity+1)} >+</Button>
                        </div>
                        
-                          <input onChange={(e) => setAdress(e.target.value)} type="text" className="w-full border p-2 rounded"  placeholder="Enter Your Address" />
+                          <input value={adress} onChange={(e) => setAdress(e.target.value)} type="text" className="w-full border p-2 rounded"  placeholder="Enter Your Address" />
                       
-                       <Button className='bg-primary' onClick={() => ConfirmOrder(id, quantity)} >Confirm Order</Button>
+                       <Button className='bg-primary' onClick={() => C_Order(id, quantity, adress)} >Confirm Order</Button>
                     </div>
                 </div>
               </dialog>

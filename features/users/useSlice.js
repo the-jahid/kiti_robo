@@ -2,7 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    loggedin:false
+    refresh:false
 }
 
 export const userSlice = createSlice({
@@ -10,7 +10,7 @@ export const userSlice = createSlice({
     name:'usersList',
     reducers: {
         setLoggedIn:(state, action) => {
-            state.loggedin = !state.loggedin
+            state.refresh = !state.refresh
         }
     }
 })

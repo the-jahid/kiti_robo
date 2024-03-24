@@ -16,15 +16,14 @@ export const AcceptDeleteOrder = async (item) => {
                 }
             }
         );
+        console.log('Responsee101', response);
         
-        window.location.reload();
         toast.success('Success');
+        window.location.reload();
     } catch (error) {
         console.error(`Error: ${error}`);
         toast.error('Error Happened');
     }
 }
-
-
 
 

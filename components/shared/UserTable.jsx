@@ -64,9 +64,12 @@ export const UserTable = ({ data, filterStatus }) => {
     );
 };
 
-export const AdminUserTable = ({ data, filterStatus }) => {
+export const AdminUserTable = ({ data, filterStatus, setRefresh }) => {
     const filteredData = filterStatus ? data.filter(item => item.status.toLowerCase() === filterStatus) : data;
-
+    
+   
+    
+   
     return (
         <div className="overflow-x-auto">
             <table className="table-auto w-full text-center mt-4">
@@ -75,6 +78,7 @@ export const AdminUserTable = ({ data, filterStatus }) => {
                         <th className="py-3 px-6 md:px-3 sm:px-2">Food ID</th>
                         <th className="py-3 px-6 md:px-3 sm:px-2">User ID</th>
                         <th className="py-3 px-6 md:px-3 sm:px-2">Orderd By</th>
+                        <th className="py-3 px-6 md:px-3 sm:px-2">Address</th>
                         <th className="py-3 px-6 md:px-3 sm:px-2">Food Name</th>
                         <th className="py-3 px-6 md:px-3 sm:px-2">Price</th>
                         <th className="py-3 px-6 md:px-3 sm:px-2">Photo</th>
@@ -84,50 +88,52 @@ export const AdminUserTable = ({ data, filterStatus }) => {
                     </tr>
                 </thead>
                 <tbody className="text-sm font-light">
-                    {filteredData.map((item, index) => {
-                        const { id, food, user, quantity, status } = item;
-                        const { id: foodId, name, price, description, photo } = food;
-                        const { id: userId, first_name, last_name, email, role } = user;
+                {filteredData.map((item, index) => {
+    const { id, food, user, quantity, status, address } = item;
+    const { id: foodId, name, price, description, photo } = food;
+    const { id: userId, first_name, last_name, email } = user;
 
-                        return (
-                            <tr key={id} className={`${index % 2 === 0 ? 'bg-blue-100' : ''} text-black`}>
-                                <td className="py-3 px-6 md:px-3 sm:px-2 ">{foodId}</td>
-                                <td className="py-3 px-6 md:px-3 sm:px-2 ">{userId}</td>
+    if (status !== "DELETE") {
+        return (
+            <tr key={id} className={`${index % 2 === 0 ? 'bg-blue-100' : ''} text-black`}>
+                <td className="py-3 px-6 md:px-3 sm:px-2 ">{foodId}</td>
+                <td className="py-3 px-6 md:px-3 sm:px-2 ">{userId}</td>
+                <td className="py-3 px-6 md:px-3 sm:px-2 ">{first_name + last_name}</td>
+                <td className="py-3 px-6 md:px-3 sm:px-2 ">{address}</td>
+                <td className="py-3 px-6 md:px-3 sm:px-2">{name}</td>
+                <td className="py-3 px-6 md:px-3 sm:px-2">{price}</td>
+                <td className="py-3 px-6 md:px-3 sm:px-2 flex justify-center items-center">
+                    <Image
+                        src={`http://203.190.8.197${photo}`}
+                        alt={name}
+                        width={500}
+                        height={500}
+                        className="object-cover md:w-16 md:h-16 sm:w-12 sm:h-12 rounded-md"
+                    />
+                </td>
+                <td className="py-3 px-6 md:px-3 sm:px-2">{quantity}</td>
+                <td className="py-3 px-6 md:px-3 sm:px-2">{quantity * price}</td>
+                <td className="py-3 px-6 md:px-3 sm:px-2">{status == 'PENDING' ? <div className=' flex flex-col space-y-2' >
+                    <AcceptDeleteModal
+                        id={`my_modal_accept_${id}`}
+                        title="Are you sure you want to accept this order?"
+                        buttonText="Accept"
+                        buttonColor="bg-primary"
+                        onConfirm={() => AcceptDeleteOrder({ value: "A", order_id: id })}
+                    />
+                    <AcceptDeleteModal
+                        id={`my_modal_delete_${id}`}
+                        title="Are you sure you want to delete this order?"
+                        buttonText="Delete"
+                        buttonColor="bg-gradient-to-r from-rose-400 to-red-500"
+                        onConfirm={() => AcceptDeleteOrder({ value: "D", order_id: id })}
+                    />
 
-                                <td className="py-3 px-6 md:px-3 sm:px-2 ">{first_name + last_name}</td>
-                                <td className="py-3 px-6 md:px-3 sm:px-2">{name}</td>
-                                <td className="py-3 px-6 md:px-3 sm:px-2">{price}</td>
-                                <td className="py-3 px-6 md:px-3 sm:px-2 flex justify-center items-center">
-                                    <Image
-                                        src={`http://203.190.8.197${photo}`}
-                                        alt={name}
-                                        width={500}
-                                        height={500}
-                                        className="object-cover md:w-16 md:h-16 sm:w-12 sm:h-12 rounded-md"
-                                    />
-                                </td>
-                                <td className="py-3 px-6 md:px-3 sm:px-2">{quantity}</td>
-                                <td className="py-3 px-6 md:px-3 sm:px-2">{quantity * price}</td>
-                                <td className="py-3 px-6 md:px-3 sm:px-2">{status == 'PENDING' ? <div className=' flex flex-col space-y-2' >
-                                    <AcceptDeleteModal
-                                        id={`my_modal_accept_${id}`}
-                                        title="Are you sure you want to accept this order?"
-                                        buttonText="Accept"
-                                        buttonColor="bg-primary"
-                                        onConfirm={() => AcceptDeleteOrder({ value: "A", order_id: id })}
-                                    />
-                                    <AcceptDeleteModal
-                                        id={`my_modal_delete_${id}`}
-                                        title="Are you sure you want to delete this order?"
-                                        buttonText="Delete"
-                                        buttonColor="bg-gradient-to-r from-rose-400 to-red-500"
-                                        onConfirm={() => AcceptDeleteOrder({ value: "D", order_id: id })}
-                                    />
-
-                                </div> : 'Accepted'}</td>
-                            </tr>
-                        );
-                    })}
+                </div> : 'Accepted'}</td>
+            </tr>
+        );
+    }
+})}
                 </tbody>
             </table>
         </div>

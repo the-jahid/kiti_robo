@@ -8,6 +8,9 @@ const OwnerDashboard = () => {
 
     const [orders, setOrders] = useState([]);
 
+    const [refresh, setRefresh] = useState(false);
+
+
     useEffect(() => {
         const fetchOrders = async () => {
             const token = localStorage.getItem('jwtToken'); 
@@ -28,7 +31,7 @@ const OwnerDashboard = () => {
         };
 
         fetchOrders();
-    }, []);
+    }, [refresh]);
 
 
 
@@ -42,13 +45,13 @@ const OwnerDashboard = () => {
     
 
     return (
-        <Tabs defaultValue="all" className="w-100vw min-h-screen ">
+        <Tabs defaultValue="pending" className="w-100vw min-h-screen ">
             <div className='px-5' >
                 <TabsContent value="all" className="min-h-screen" >
                     {orders && <AdminUserTable data={orders} />}
                 </TabsContent>
                 <TabsContent className="min-h-screen" value="pending">
-                {orders && <AdminUserTable data={orders} filterStatus="pending" />}
+                {orders && <AdminUserTable data={orders} filterStatus="pending"   />}
                 </TabsContent>
                 <TabsContent className="min-h-screen" value="accepted">
                 {orders && <AdminUserTable data={orders} filterStatus="apcepted" />}

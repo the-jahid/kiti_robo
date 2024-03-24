@@ -12,6 +12,7 @@ import "swiper/css/pagination";
 import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
 import { useData } from "@/hooks/useData";
 
+
 const TopSell = () => {
   const { data: foodsData } = useData("http://203.190.8.197/food/foods");
   return (
@@ -22,7 +23,21 @@ const TopSell = () => {
         </h2>
         <p>Order your favourite food</p>
 
-        <div className="w-full mt-10">
+    {foodsData.length == 0 ?   
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" > 
+{Array.from({length: 3}).map((item, index) => 
+<div key={index} role="status" className="max-w-sm animate-pulse">
+    <div className="h-2.5 bg-gray-400 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+    <div className="h-2 bg-gray-400 rounded-full dark:bg-gray-700 max-w-[360px] mb-2.5"></div>
+    <div className="h-2 bg-gray-400 rounded-full dark:bg-gray-700 mb-2.5"></div>
+    <div className="h-2 bg-gray-400 rounded-full dark:bg-gray-700 max-w-[330px] mb-2.5"></div>
+    <div className="h-2 bg-gray-400 rounded-full dark:bg-gray-700 max-w-[300px] mb-2.5"></div>
+    <div className="h-2 bg-gray-400 rounded-full dark:bg-gray-700 max-w-[360px]"></div>
+    <span className="sr-only">Loading...</span>
+</div>
+
+)}
+</div> :     <div className="w-full mt-10">
           <Swiper
             effect={"coverflow"}
             grabCursor={true}
@@ -62,7 +77,7 @@ const TopSell = () => {
               </SwiperSlide>
             ))}
           </Swiper>
-        </div>
+        </div>  }
       </div>
     </section>
   );

@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 
 const CancelOrder = async (id, setStatus) => {
 
-  console.log('idddd', id);
+ 
 
   const token = localStorage.getItem('jwtToken');
   

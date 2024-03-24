@@ -54,7 +54,7 @@ const Form = (props) => {
         })
         .catch(error => {
           console.log('error', error)
-          toast.error("Please try again")
+          toast.error("Server is not Responding....")
         });
 
       reset();
@@ -72,8 +72,12 @@ const Form = (props) => {
     }
 
       axios.post('http://203.190.8.197/auth/register', registerData)
-      .then(response => {
-        toast.success('Successfully Registered!');
+      .then( async response => {
+        
+          
+          toast.success('Successfully Registered!');
+          
+           window.location.reload()
       })
       .catch(error => {
         toast.error('There is same email with this account please try another email');

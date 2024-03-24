@@ -2,25 +2,34 @@
 
 import RmsDashboardSidebar from "@/components/dashboardComponents/RmsDashboardSidebar";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+
 import Image from "next/image";
 import { useForm } from "react-hook-form";
-import { AiOutlineDeliveredProcedure } from "react-icons/ai";
-import { FaCartArrowDown, FaRegMessage } from "react-icons/fa6";
-import { GiRobotAntennas } from "react-icons/gi";
-import { IoMdNotificationsOutline } from "react-icons/io";
-import { IoSettingsOutline } from "react-icons/io5";
+
 // import MapPath from "../map/MapPath";
 import MapPath from "@/components/map/MapPath";
 import { io } from "socket.io-client";
 import { useDispatch, useSelector } from "react-redux"
 // import io from "socket.io-client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { setLocation } from "@/features/robots/currentPosition";
 import { setRoute } from "@/features/robots/makeRoute";
+import {
+    Sheet,
+    SheetContent,
+    SheetDescription,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+} from "@/components/ui/sheet"
 
+import { MdOutlineShoppingCartCheckout } from "react-icons/md";
+import { cn } from "@/lib/utils";
+import toast from "react-hot-toast";
+
+import VideoPlayer from "./LiveStream";
+import { AcceptDeleteOrder } from "@/components/shared/AcceptDeleteOrder";
 
 
 
@@ -28,7 +37,9 @@ const Rms = () => {
 
     const dispatch = useDispatch();
     const positions = useSelector((state) => state.positions.positions);
+    const [orders, setOrders] = useState([]);
     const singleRobot = useSelector((state) => state.robots.singlerobot);
+    const [refresh, setRefresh] = useState(false);
 
     // const { lists, singlerobot } = robots;
 
@@ -48,26 +59,30 @@ const Rms = () => {
 
     const onSubmit = (data) => console.log(data)
 
+
+
+
+
     const socket = io("http://203.190.8.197:5000");
     const socket2 = io("http://203.190.8.197:5001");
 
     socket.on("connect", () => {
-      console.log("Connected to server");
-  
-      socket.on("message", (message) => {
-        console.log("Message received: ", message);
-      });
-      socket2.on("json", (json) => {
-        console.log("Json received: ", json);
-        const position = { lat: json.latitude, json: location.longitude };
-        dispatch(setLocation(position));
-      });
-  
-      socket.on("disconnect", () => {
-        console.log("Disconnected from server");
-      });
+        console.log("Connected to server");
+
+        socket.on("message", (message) => {
+            console.log("Message received: ", message);
+        });
+        socket2.on("json", (json) => {
+            console.log("Json received: ", json);
+            const position = { lat: json.latitude, json: location.longitude };
+            dispatch(setLocation(position));
+        });
+
+        socket.on("disconnect", () => {
+            console.log("Disconnected from server");
+        });
     });
-  
+
     // useEffect(() => {
     //   // set time interval to get the location
     //   const interval = setInterval(() => {
@@ -85,31 +100,62 @@ const Rms = () => {
     //         console.error(error);
     //       });
     //   }, 1000);
-  
+
     //   return () => clearInterval(interval);
     // }, []);
-  
+
     const setToServer = () => {
-      axios
-        .post("http://dsttamal.me/set_GPS.php", {
-          positions: positions,
-        })
-        .then((response) => {
-          console.log(response.data);
-          socket.send("get");
-          alert("Route Sent");
-        })
-        .catch((error) => {
-          alert("Route not Sent");
-          console.log(error);
-        });
+        axios
+            .post("http://dsttamal.me/set_GPS.php", {
+                positions: positions,
+            })
+            .then((response) => {
+                console.log(response.data);
+                socket.send("get");
+                toast.success('Route Send Successfully')
+            })
+            .catch((error) => {
+                alert("Route not Sent");
+                console.log(error);
+            });
     };
 
     const images = [
-        'https://i.ibb.co/CvCq1rp/43822.jpg',
-        'https://i.ibb.co/GdtXkbC/2151153910.jpg',
-        'https://i.ibb.co/pxjMBR2/3d-rendering-loft-luxury-living-room-with-bookshelf.jpg'
+        'https://i.ibb.co/23S9DB5/Icon-Camera-svg.png',
+        'https://i.ibb.co/23S9DB5/Icon-Camera-svg.png',
+        'https://i.ibb.co/23S9DB5/Icon-Camera-svg.png'
     ];
+
+
+    const DeliveryItem = (id) => {
+        AcceptDeleteOrder({order_id:id, value:'S' })
+        setRefresh(!refresh);
+    }
+
+
+    useEffect(() => {
+        const fetchOrders = async () => {
+            const token = localStorage.getItem('jwtToken');
+
+            try {
+                const response = await axios.get('http://203.190.8.197/food/get_order_list',
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    }
+                );
+
+                setOrders(response.data);
+            } catch (error) {
+                console.error(`Error: ${error}`);
+            }
+        };
+
+        fetchOrders();
+    }, [refresh]);
+
+
 
     return (
         <div className="flex justify-between h-full ">
@@ -201,11 +247,50 @@ const Rms = () => {
                 <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 justify-between space-x-4 " >
 
                     <div className=" md:basis-8/12 space-y-3 " >
-                        <h2 className="font-semibold" >Camera View</h2>
+                        <div className=" w-full" >
+                            <div>
+                                <Sheet>
+                                    <SheetTrigger className={cn('bg-white shadow-md px-4 py-2 rounded flex space-x-4 items-center')} > Show Orders<MdOutlineShoppingCartCheckout size={25} /></SheetTrigger>
+                                    <SheetContent>
+                                        <SheetHeader>
+                                            <SheetTitle>Are you absolutely sure?</SheetTitle>
+                                            <SheetDescription className={cn('h-[90vh] overflow-y-auto ')}  >
+
+                                                {orders.map((item, index) => {
+
+                                                    const { id, food, user, quantity, status, address } = item;
+                                                    const { id: foodId, name, price, description, photo } = food;
+                                                    const { id: userId, first_name, last_name, email } = user;
+
+                                                    return (
+                                                        <div key={id} className="space-y-2  " >
+                                                            {
+                                                                status == 'APCEPTED' && <div className="flex p-2  justify-between bg-white border rounded-md mt-2 shadow-md  " >
+                                                                    <p>{address}</p>
+                                                                    <div>
+                                                                        <button onClick={() => DeliveryItem(id)} className="bg-gray-200 p-1 rounded-md shadow-sm " > Deliverd</button>
+                                                                    </div>
+                                                                </div>
+                                                            }
+
+
+                                                        </div>
+                                                    );
+                                                })}
+
+                                            </SheetDescription>
+                                        </SheetHeader>
+                                    </SheetContent>
+                                </Sheet>
+
+                            </div>
+                        </div>
                         <div className="flex flex-col md:flex-row space-x-4 space-y-4 md:space-y-0 w-full">
                             <div className=" md:basis-9/12 space-y-4 " >
+                                <div>
+                                        <VideoPlayer />        
+                                </div>
 
-                            
                                 <div className="flex justify-evenly" >
                                     <Button className='bg-primary' >Front</Button>
                                     <Button className='bg-primary' >Back</Button>
@@ -214,23 +299,23 @@ const Rms = () => {
                                 </div>
                             </div>
                             <div className=" hidden md:flex justify-between md:flex-col md:basis-3/12 md:space-y-4 ">
-                                <Image src={'https://i.ibb.co/CvCq1rp/43822.jpg'} alt="camera_image" className="w-full h-24" width={100} height={100} />
-                                <Image src={'https://i.ibb.co/GdtXkbC/2151153910.jpg'} alt="camera_image" className="w-full h-24" width={100} height={100} />
-                                <Image src={'https://i.ibb.co/pxjMBR2/3d-rendering-loft-luxury-living-room-with-bookshelf.jpg'} alt="camera_image" className="w-full h-24" width={100} height={50} />
+                                <Image src={'https://i.ibb.co/m0HL19M/360-F-107579101-QVl-TG43-Fwg9-Q6ggw-F436-MPIBTVpa-KKtb.jpg'} alt="camera_image" className="w-full h-24 border-2" width={100} height={100} />
+                                <Image src={'https://i.ibb.co/m0HL19M/360-F-107579101-QVl-TG43-Fwg9-Q6ggw-F436-MPIBTVpa-KKtb.jpg'} alt="camera_image" className="w-full h-24 border-2" width={100} height={100} />
+                                <Image src={'https://i.ibb.co/m0HL19M/360-F-107579101-QVl-TG43-Fwg9-Q6ggw-F436-MPIBTVpa-KKtb.jpg'} alt="camera_image" className="w-full h-24 border-2" width={100} height={50} />
                             </div>
 
                         </div>
                         <div className="bg-cyan-400  h-96" >
-                           <MapPath />
+                            <MapPath />
                         </div>
                     </div>
 
                     {/* bottom section end */}
                     <div className="  flex flex-col  bg-white p-5 shadow-lg  space-y-4  rounded-md lg:items-center " >
-                        
-                
-                     
-                      <h1 className="text-center h1">Selected points</h1>
+
+
+
+                        <h1 className="text-center h1">Selected points</h1>
                         <div className="flex items-center justify-center flex-wrap space-x-2 space-y-2 ">
                             {positions.map((position, index) => {
                                 return (
@@ -246,7 +331,7 @@ const Rms = () => {
                         <div className="flex flex-col items-center justify-center bg-white shadow-lg p-2">
                             <hr />
                         </div>
-                        <div className=" flex flex-col space-y-4 justify-between   p-2">
+                        <div className=" flex flex-col space-y-4 justify-between   p-2 w-full">
                             <button
                                 onClick={() => {
                                     dispatch(setRoute({ route: true }));
@@ -271,12 +356,12 @@ const Rms = () => {
                                 <h2 className="text-xl text-white  " >Kiti Stop</h2>
                             </button>
                         </div>
-                     
-                      
+
+
                     </div>
                 </div>
-                </div>
-                <div>
+            </div>
+            <div>
             </div>
         </div>
     )
