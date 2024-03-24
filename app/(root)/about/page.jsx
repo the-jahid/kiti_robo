@@ -36,9 +36,10 @@ import TeamInfoCard from "@/components/shared/TeamInfoCard";
 const AboutPage = () => {
 
   const imageUrls = [
-    'https://i.ibb.co/cYyPJBj/322733638-588320723135399-4255754482603456451-n.jpg',
-    'https://i.ibb.co/jLpR5vt/144396528-10158270962907203-2704272389211756919-n.jpg',
-    'https://i.ibb.co/w00QQTY/143612997-10158270962587203-2482701882574694851-n.jpg',
+    'https://i.ibb.co/7rY5ySX/Whats-App-Image-2024-03-18-at-4-51-00-PM-3.jpg',
+    'https://i.ibb.co/GkZTdqL/Whats-App-Image-2024-03-18-at-4-51-00-PM.jpg',
+    'https://i.ibb.co/4RGRzcT/Whats-App-Image-2024-03-18-at-4-50-58-PM.jpg',
+    'https://i.ibb.co/4RGRzcT/Whats-App-Image-2024-03-18-at-4-50-58-PM.jpg',
   ];
 
   return (

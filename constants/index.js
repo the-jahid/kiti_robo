@@ -504,7 +504,7 @@ export const advisorInfo = [
     },
     {
         id:3,
-        name:'Professor Dr. Touhid Bhuiyan',
+        name:'Prof. Dr. Touhid Bhuiyan',
         imageLInk:'https://i.ibb.co/RNNTvpJ/4383d374442e6e72ad12a0bb79c36aab.jpg'
     },
     {
