@@ -74,7 +74,7 @@ const Rms = () => {
         });
         socket2.on("json", (json) => {
             console.log("Json received: ", json);
-            const position = { lat: json.latitude, json: location.longitude };
+            const position = { lat: json.latitude, lon: json.longitude };
             dispatch(setLocation(position));
         });
 
